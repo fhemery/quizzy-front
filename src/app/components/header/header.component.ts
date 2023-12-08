@@ -4,11 +4,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PingService, PingStatus } from '../../services/ping.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'qzy-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatTooltipModule],
+  imports: [CommonModule, MatToolbarModule, MatIconModule, MatTooltipModule, TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
