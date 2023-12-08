@@ -1,0 +1,37 @@
+.header {
+
+  &__toolbar {
+   height: 9.6rem;
+  }
+
+  &__logo {
+    height:100%;
+    padding : .5rem;
+  }
+
+  &__placeholder {
+    flex: 1;
+  }
+
+  &__status {
+    &--ko {
+      color: var(--color-error);
+    }
+
+    &--partial {
+      color: orange;
+    }
+
+    &--full {
+      color: var(--color-success-background);
+    }
+
+    &--unknown {
+      color: grey;
+    }
+  }
+}
+
+.header__logo-img {
+  height: 100%;
+}

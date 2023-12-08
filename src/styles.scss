@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --color-paper-lighter: #f7f4e3;
+  --color-paper: #f2eecb;
+  --color-paper-darker: #e6e1b3;
+
+  --color-paper-complementary: #CBCFF2;
+  --color-paper-complementary-darker: #b3b3e6;
+
+  --color-text: #111;
+  --color-text-darker: #000;
+
+  --color-error: #9a1d1d;
+  --color-error-background: #ffb2b2;
+
+  --color-success-background: #63a163;
+  --color-success-border: #14a914;
+
+  --color-account-background: #eee;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height:100%;
+
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  height: 100%;
+}

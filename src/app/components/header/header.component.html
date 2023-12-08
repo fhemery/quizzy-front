@@ -1,0 +1,26 @@
+<header class="header">
+  <mat-toolbar color="primary" class="header__toolbar">
+    <div class="header__logo">
+      <a href="/" title="Go home"><img src="/assets/logo.png" class="header__logo-img" alt="Quizzy logo" /></a>
+    </div>
+    <div>Quizzy</div>
+    <div class="header__placeholder">&nbsp;</div>
+    <div>
+      @if ((pingStatus$ | async); as pingStatus) {
+        @switch (pingStatus){
+          @case (PingStatus.KO) {
+            <mat-icon matTooltip="Server is not reachable" class="header__status header__status--ko">error</mat-icon>
+          }
+          @case (PingStatus.Partial) {
+            <mat-icon matTooltip="Server is reachable, but database is not set" class="header__status header__status--partial">warning</mat-icon>
+          }
+          @case (PingStatus.Full) {
+            <mat-icon matTooltip="Server is fully online" class="header__status header__status--full">check_circle</mat-icon>
+          }
+        }
+      } @else {
+          <mat-icon matTooltip="Checking server status" class="header__status header__status--unknown">pending</mat-icon>
+      }
+    </div>
+  </mat-toolbar>
+</header>
