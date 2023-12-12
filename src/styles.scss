@@ -39,3 +39,8 @@ body {
   line-height: 1.6;
   height: 100%;
 }
+
+.form-error {
+  color: var(--color-error);
+  font-size: 1.2rem;
+}
