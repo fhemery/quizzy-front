@@ -8,6 +8,26 @@
             <input
               matInput
               class="form-control form-control--compact"
+              name="username"
+              type="text"
+              [ngClass]="{ 'form-control--error': username.errors && username.touched }"
+              formControlName="username"
+              [placeholder]="'registerPage.username.placeholder' | translate"
+              required
+            />
+          </mat-form-field>
+          <div
+            *ngIf="username.errors?.['required'] && username.touched"
+            class="form-error"
+          >
+            {{ 'registerPage.username.error.required' | translate }}
+          </div>
+        </div>
+        <div class="form-field">
+          <mat-form-field>
+            <input
+              matInput
+              class="form-control form-control--compact"
               name="email"
               type="email"
               [ngClass]="{ 'form-control--error': email.errors && email.touched }"

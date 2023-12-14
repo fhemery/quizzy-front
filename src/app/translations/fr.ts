@@ -10,6 +10,12 @@ export const fr = {
   },
   registerPage: {
     title: 'Inscription',
+    username: {
+      placeholder: 'Nom d\'utilisateur',
+      error : {
+        required: 'Le nom d\'utilisateur est requis',
+      }
+    },
     email: {
       placeholder: 'Adresse email',
       error : {

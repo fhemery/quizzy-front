@@ -28,6 +28,9 @@ export class RegisterPageComponent {
   @Output() register = new EventEmitter<RegisterData>();
 
   registerForm: FormGroup;
+  get username() {
+    return this.registerForm.controls['username'];
+  }
   get email() {
     return this.registerForm.controls['email'];
   }
@@ -41,6 +44,7 @@ export class RegisterPageComponent {
   constructor(private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group(
       {
+        username: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', Validators.required],
@@ -50,7 +54,7 @@ export class RegisterPageComponent {
   }
 
   doRegister() {
-    this.registerService.register(this.registerForm.value.email, this.registerForm.value.password)
+    this.registerService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password)
       .pipe(take(1)).subscribe((result) => {
         if (result.isSuccess) {
           this.router.navigateByUrl('');
