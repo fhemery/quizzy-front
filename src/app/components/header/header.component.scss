@@ -30,6 +30,10 @@
       color: grey;
     }
   }
+
+  &__user {
+    display:flex;
+  }
 }
 
 .header__logo-img {

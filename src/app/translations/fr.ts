@@ -6,7 +6,8 @@ export const fr = {
       partial: 'Le serveur répond, mais pas la base de données',
       ok: 'Le serveur est en ligne !',
       pending: 'Vérification du statut serveur...'
-    }
+    },
+    userMissing: 'Utilisateur inconnu (issue #4)'
   },
   registerPage: {
     title: 'Inscription',
