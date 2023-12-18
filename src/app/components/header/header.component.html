@@ -1,9 +1,9 @@
 <header class="header">
   <mat-toolbar color="primary" class="header__toolbar">
     <div class="header__logo">
-      <a href="/" title="Go home"><img src="/assets/logo.png" class="header__logo-img" alt="Quizzy logo" /></a>
+      <a routerLink="/" title="Go home"><img src="/assets/logo.png" class="header__logo-img" alt="Quizzy logo" /></a>
     </div>
-    <div>{{ 'appName' | translate }}</div>
+    <div><a routerLink="/" class="header__title" title="Go home">{{ 'appName' | translate }}</a></div>
     <div class="header__placeholder">&nbsp;</div>
     <div>
       @if ((pingStatus$ | async); as pingStatus) {
@@ -24,15 +24,17 @@
     </div>
     @if(isLoggedIn$ | async) {
       <div class="header__user">
-        <mat-icon>user</mat-icon>
+        <mat-icon class="header__user--icon" [matMenuTriggerFor]="menu">account_circle</mat-icon>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
+        <div>
         @if (userDetails$ | async; as user) {
           {{user.username}}
           } @else {
           <div [matTooltip]="'header.userMissing' | translate"> ??? </div>
           }
+        </div>
       </div>
     }
   </mat-toolbar>

@@ -9,6 +9,16 @@
     padding : .5rem;
   }
 
+  &__title {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+
+    &:hover, &:visited {
+      text-decoration: none;
+      color: var(--color-text-secondary);
+    }
+  }
+
   &__placeholder {
     flex: 1;
   }
@@ -33,6 +43,17 @@
 
   &__user {
     display:flex;
+    align-items: center;
+
+    & > * {
+      margin-left: 2rem;
+    }
+
+    &--icon {
+      font-size: 5rem;
+      width: 5rem;
+      height: 5rem;
+    }
   }
 }
 

@@ -85,6 +85,9 @@ export const fr = {
       label: 'Entrez le code du questionnaire',
       placeholder: 'Code du questionnaire',
       button: 'Rejoindre',
+    },
+    notLogged: {
+      button: 'Connectez-vous pour accéder à vos questionnaires !'
     }
   }
 }
