@@ -1,0 +1,14 @@
+<div class="quiz-list">
+  @for (quiz of quizzes; track quiz.id) {
+
+  } @empty {
+    <div class="quiz-list__empty">
+      {{ 'welcomePage.dashboard.empty' | translate }}
+    </div>
+    <button mat-raised-button color="primary" (click)="createQuiz()">
+      {{ 'welcomePage.dashboard.createQuiz' | translate }}
+    </button>
+  }
+  <div class="quiz-list__header"></div>
+
+</div>

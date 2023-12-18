@@ -88,6 +88,13 @@ export const fr = {
     },
     notLogged: {
       button: 'Connectez-vous pour accéder à vos questionnaires !'
+    },
+    dashboard: {
+      title: 'Vos Quiz',
+      errorLoadingQuizzes: 'Erreur lors du chargement des questionnaires - le backend ne répond pas.',
+      createQuiz: 'Nouveau Quiz',
+      loading: 'Chargement des quizz en cours...',
+      empty: 'Vous n\'avez pas encore de quiz. Créez-en un !',
     }
   }
 }

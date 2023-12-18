@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <div class="dashboard__header">
+    <h2>{{'welcomePage.dashboard.title' | translate}}</h2>
+  </div>
+
+  @if (quizzes$ | async; as quizzes) {
+    <div class="dashboard__quizzes">
+      @if (quizzes.status === 'OK') {
+        <qzy-quiz-list [quizzes]="quizzes.data" ></qzy-quiz-list>
+      } @else {
+        <div class="dashboard__error">
+          {{ 'welcomePage.dashboard.errorLoadingQuizzes' | translate }}
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="dashboard__loading">
+      {{ 'welcomePage.dashboard.loading' | translate }}
+    </div>
+  }
+</div>
