@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth, authState, signInWithEmailAndPassword, User } from '@angular/fire/auth';
-import { catchError, from, map, Observable, of, startWith, switchMap } from 'rxjs';
+import { catchError, from, map, Observable, of, switchMap } from 'rxjs';
 import { UserDetails } from './user-details';
 import { UserService } from './user.service';
 

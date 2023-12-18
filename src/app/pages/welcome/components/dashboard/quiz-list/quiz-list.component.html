@@ -1,13 +1,20 @@
 <div class="quiz-list">
-  @for (quiz of quizzes; track quiz.id) {
+  @for (quiz of quizzes.data;track quiz.id) {
 
   } @empty {
     <div class="quiz-list__empty">
-      {{ 'welcomePage.dashboard.empty' | translate }}
+      <div>
+        {{ 'welcomePage.dashboard.empty' | translate }}
+      </div>
+      <div class="quiz-list__create">
+        <button mat-raised-button color="primary" (click)="createQuiz()">
+          {{ 'welcomePage.dashboard.createQuiz' | translate }}
+        </button>
+        @if (! quizzes.isCreateQuizLinkAvailable) {
+          <mat-icon color="warn" [matTooltip]="'welcomePage.dashboard.hateoas.createMissing' | translate">warning</mat-icon>
+        }
+      </div>
     </div>
-    <button mat-raised-button color="primary" (click)="createQuiz()">
-      {{ 'welcomePage.dashboard.createQuiz' | translate }}
-    </button>
   }
   <div class="quiz-list__header"></div>
 

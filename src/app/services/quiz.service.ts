@@ -7,10 +7,14 @@ import { Quiz } from '../model/quiz';
 export interface QuizListResponse {
   status: 'OK' | 'ERROR';
   data: Quiz[];
+  isCreateQuizLinkAvailable: boolean;
 }
 
 export interface GetAllQuizApiResponse {
   data: Quiz[];
+  _links: {
+    create: string;
+  };
 }
 
 
@@ -22,8 +26,8 @@ export class QuizService {
 
   getAll(): Observable<QuizListResponse> {
     return this.httpClient.get<GetAllQuizApiResponse>(`${environment.apiUrl}/quiz`).pipe(
-      map((response): QuizListResponse => ({ status: 'OK' , data: response.data })),
-      catchError((error): Observable<QuizListResponse> => of({ status: 'ERROR', data: [] })));
+      map((response): QuizListResponse => ({ status: 'OK' , data: response.data, isCreateQuizLinkAvailable: !!response._links?.create })),
+      catchError((): Observable<QuizListResponse> => of({ status: 'ERROR', data: [], isCreateQuizLinkAvailable: false })));
 
   }
 
