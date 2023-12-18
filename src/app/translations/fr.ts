@@ -77,4 +77,14 @@ export const fr = {
       link: 'Contactez-nous',
     },
   },
+  welcomePage: {
+    title: 'Bienvenue sur Quizzy !',
+    description: 'Affrontez vos amis dans des quiz de culture générale !',
+    join : {
+      title : 'Rejoignez un questionnaire !',
+      label: 'Entrez le code du questionnaire',
+      placeholder: 'Code du questionnaire',
+      button: 'Rejoindre',
+    }
+  }
 }
