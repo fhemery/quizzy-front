@@ -1,4 +1,10 @@
 .quiz-list {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__empty {
     display: flex;
     flex-direction: column;

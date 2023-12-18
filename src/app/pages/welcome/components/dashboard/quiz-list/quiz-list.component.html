@@ -1,5 +1,15 @@
 <div class="quiz-list">
+  @if(quizzes.data.length > 0) {
+    <div class="quiz-list__header">
+      <div class="quiz-list__header__title">
+        {{ 'welcomePage.dashboard.list.title' | translate:{nb: quizzes.data.length} }}
+      </div>
+      <qzy-new-quiz-button [quizzes]="quizzes"></qzy-new-quiz-button>
+    </div>
+  }
   @for (quiz of quizzes.data;track quiz.id) {
+
+
 
   } @empty {
     <div class="quiz-list__empty">

@@ -97,6 +97,9 @@ export const fr = {
       empty: 'Vous n\'avez pas encore de quiz. Créez-en un !',
       hateoas: {
         createMissing: 'Aucun lien dans la réponse de la liste des quiz ne permet la creation de quiz',
+      },
+      list : {
+        title: '{{nb}} quizzes',
       }
     }
   }
