@@ -6,14 +6,7 @@
       <div>
         {{ 'welcomePage.dashboard.empty' | translate }}
       </div>
-      <div class="quiz-list__create">
-        <button mat-raised-button color="primary" (click)="createQuiz()">
-          {{ 'welcomePage.dashboard.createQuiz' | translate }}
-        </button>
-        @if (! quizzes.isCreateQuizLinkAvailable) {
-          <mat-icon color="warn" [matTooltip]="'welcomePage.dashboard.hateoas.createMissing' | translate">warning</mat-icon>
-        }
-      </div>
+      <qzy-new-quiz-button [quizzes]="quizzes"></qzy-new-quiz-button>
     </div>
   }
   <div class="quiz-list__header"></div>
