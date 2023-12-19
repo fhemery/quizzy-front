@@ -7,18 +7,15 @@
       <qzy-new-quiz-button [quizzes]="quizzes" (createQuiz)="onCreateQuiz()"></qzy-new-quiz-button>
     </div>
   }
-  @for (quiz of quizzes.data;track quiz.id) {
-
-
-
-  } @empty {
-    <div class="quiz-list__empty">
+  @if (!quizzes.data.length) {
+        <div class="quiz-list__empty">
       <div>
         {{ 'welcomePage.dashboard.empty' | translate }}
       </div>
       <qzy-new-quiz-button [quizzes]="quizzes" (createQuiz)="onCreateQuiz()"></qzy-new-quiz-button>
     </div>
+  } @else {
+    <qzy-quiz-list-table [quizzes]="quizzes.data"></qzy-quiz-list-table>
   }
-  <div class="quiz-list__header"></div>
 
 </div>
