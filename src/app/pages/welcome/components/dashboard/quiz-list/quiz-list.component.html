@@ -4,7 +4,7 @@
       <div class="quiz-list__header__title">
         {{ 'welcomePage.dashboard.list.title' | translate:{nb: quizzes.data.length} }}
       </div>
-      <qzy-new-quiz-button [quizzes]="quizzes"></qzy-new-quiz-button>
+      <qzy-new-quiz-button [quizzes]="quizzes" (createQuiz)="onCreateQuiz()"></qzy-new-quiz-button>
     </div>
   }
   @for (quiz of quizzes.data;track quiz.id) {
@@ -16,7 +16,7 @@
       <div>
         {{ 'welcomePage.dashboard.empty' | translate }}
       </div>
-      <qzy-new-quiz-button [quizzes]="quizzes"></qzy-new-quiz-button>
+      <qzy-new-quiz-button [quizzes]="quizzes" (createQuiz)="onCreateQuiz()"></qzy-new-quiz-button>
     </div>
   }
   <div class="quiz-list__header"></div>

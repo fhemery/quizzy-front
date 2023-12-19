@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuizService } from '../../../../services/quiz.service';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 
 @Component({
@@ -15,6 +15,12 @@ import { QuizListComponent } from './quiz-list/quiz-list.component';
 })
 export class DashboardComponent {
   private readonly quizService = inject(QuizService);
+  private readonly router = inject(Router);
   quizzes$ = this.quizService.getAll();
 
+  createQuiz() {
+    this.quizService.create().subscribe((quizId) => {
+      this.router.navigateByUrl(`/quiz/${quizId}`);
+    });
+  }
 }

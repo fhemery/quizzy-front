@@ -18,6 +18,6 @@ export class NewQuizButtonComponent {
   @Input() quizzes!: QuizListResponse;
 
   onCreateQuiz() {
-
+    this.createQuiz.emit();
   }
 }

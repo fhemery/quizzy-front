@@ -7,6 +7,10 @@ export const appRoutes: Route[] = [
     component: WelcomePageComponent
   },
   {
+    path: 'quiz',
+    loadChildren: () => import('./pages/quiz-edit/quiz-edit.routes').then(m => m.quizEditRoutes)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.routes').then(m => m.loginRoutes)
   },

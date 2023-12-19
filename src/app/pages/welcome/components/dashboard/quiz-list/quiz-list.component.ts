@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,9 +16,9 @@ import { NewQuizButtonComponent } from '../new-quiz-button/new-quiz-button.compo
 })
 export class QuizListComponent {
   @Input() quizzes!: QuizListResponse;
+  @Output() createQuiz = new EventEmitter<void>();
 
-
-  createQuiz() {
-
+  onCreateQuiz() {
+    this.createQuiz.emit();
   }
 }

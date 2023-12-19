@@ -9,6 +9,10 @@ export const fr = {
     },
     userMissing: 'Utilisateur inconnu (issue #4)'
   },
+  quiz: {
+    defaultTitle: 'Nouveau Quiz',
+    defaultDescription: ''
+  },
   registerPage: {
     title: 'Inscription',
     username: {
@@ -102,5 +106,9 @@ export const fr = {
         title: '{{nb}} quizzes',
       }
     }
+  },
+  quizEditPage: {
+    notFound: 'Quiz non trouvé',
+    error: 'Erreur lors du chargement du quiz',
   }
 }
