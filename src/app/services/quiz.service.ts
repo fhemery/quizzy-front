@@ -67,4 +67,8 @@ export class QuizService {
         return of({ status: 'ERROR', data: undefined });
       } ));
   }
+
+  updateTitle(id: string, newTitle: string) {
+    return this.httpClient.patch<void>(`${environment.apiUrl}/quiz/${id}`, [{ op: "replace", path: "/title", value: newTitle }]);
+  }
 }

@@ -1,5 +1,8 @@
 export const fr = {
   appName: "Quizzy",
+  common : {
+    'ok': 'Ok',
+  },
   header : {
     statusTooltip: {
       ko: 'Le serveur est injoignable',
@@ -110,5 +113,9 @@ export const fr = {
   quizEditPage: {
     notFound: 'Quiz non trouvé',
     error: 'Erreur lors du chargement du quiz',
+    title: {
+      updated: 'Titre mis à jour',
+      updateError: 'Erreur lors de la mise à jour du titre'
+    }
   }
 }
