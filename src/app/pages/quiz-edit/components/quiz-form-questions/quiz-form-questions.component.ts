@@ -6,6 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { QuizFormQuestionComponent } from '../quiz-form-question/quiz-form-question.component';
+import { catchError, of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'qzy-quiz-form-questions',
@@ -16,6 +18,7 @@ import { QuizFormQuestionComponent } from '../quiz-form-question/quiz-form-quest
 })
 export class QuizFormQuestionsComponent {
   private readonly quizService = inject(QuizService);
+  private readonly snackBarService = inject(MatSnackBar);
   @Input() quizId!: string;
   @Input() questions!: QuizQuestion[];
 
@@ -23,5 +26,16 @@ export class QuizFormQuestionsComponent {
     this.quizService.addQuestion(this.quizId).subscribe((question) => {
       this.questions.push(question);
     });
+  }
+
+  updateQuestionTitle(id: string, newTitle: string) {
+    const question = this.questions.find((q) => q.id === id)!;
+    question.title = newTitle;
+    this.quizService.updateQuestion(this.quizId, question)
+      .pipe(catchError((err) => {
+        this.snackBarService.open(`Error while updating question title: ${err.message}`, 'OK', { duration: 5000, panelClass: 'error'} );
+        return of(null);
+      }))
+      .subscribe();
   }
 }

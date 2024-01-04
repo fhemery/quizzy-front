@@ -82,4 +82,8 @@ export class QuizService {
         return { id: location.substring(location.lastIndexOf('/') + 1), ...question}
       }));
   }
+
+  updateQuestion(quizId: string, question: QuizQuestion) {
+    return this.httpClient.put<void>(`${environment.apiUrl}/quiz/${quizId}/questions/${question.id}`, question);
+  }
 }

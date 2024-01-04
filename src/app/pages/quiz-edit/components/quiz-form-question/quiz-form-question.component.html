@@ -1,14 +1,14 @@
 <div class="question">
-  <div class="question__title">
-    <h4>{{question.title}}</h4>
-  </div>
-  <div class="question__answers">
-    @for (answer of question.answers; track $index) {
-      <div class="answer">
-        <div class="answer__title">
-          <h5>{{answer.title}}</h5>
-        </div>
-      </div>
-    }
-  </div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="header">
+      <mat-panel-title>
+          <mat-form-field class="question__title">
+            <div>
+              <input matInput class="question__title" placeholder="Title" id="title" name="title" [value]="question.title" (change)="updateTitle($event)">
+            </div>
+          </mat-form-field>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
 </div>

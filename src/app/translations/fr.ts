@@ -123,6 +123,9 @@ export const fr = {
       add: "Ajouter une question",
       empty: "Pas encore de questions",
       noQuestionReturned: 'Aucune question renvoyée par le backend',
+    },
+    question: {
+      title: 'Question',
     }
   }
 }
