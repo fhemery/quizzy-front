@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Quiz } from '../model/quiz';
 import { TranslateService } from '@ngx-translate/core';
 import { HateoasService, HateoasUrl } from './hateoas.service';
+import { QuizQuestion, QuizQuestionToCreate } from '../model/quiz-question';
 
 export interface QuizListResponse {
   status: 'OK' | 'ERROR';
@@ -70,5 +71,15 @@ export class QuizService {
 
   updateTitle(id: string, newTitle: string) {
     return this.httpClient.patch<void>(`${environment.apiUrl}/quiz/${id}`, [{ op: "replace", path: "/title", value: newTitle }]);
+  }
+
+  addQuestion(quizId: string): Observable<QuizQuestion> {
+    const question: QuizQuestionToCreate = {title: this.translateService.instant('quiz.defaultQuestionTitle'), answers: []};
+    return this.httpClient.post<void>(`${environment.apiUrl}/quiz/${quizId}/questions`, question, {observe: 'response'}).pipe(
+      map(response => {
+        const location = response.headers.get('Location') || '';
+        console.log('Location is', location);
+        return { id: location.substring(location.lastIndexOf('/') + 1), ...question}
+      }));
   }
 }

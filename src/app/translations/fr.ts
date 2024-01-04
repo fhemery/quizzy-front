@@ -14,7 +14,8 @@ export const fr = {
   },
   quiz: {
     defaultTitle: 'Nouveau Quiz',
-    defaultDescription: ''
+    defaultDescription: '',
+    defaultQuestionTitle: 'Nouvelle question'
   },
   registerPage: {
     title: 'Inscription',
@@ -116,6 +117,12 @@ export const fr = {
     title: {
       updated: 'Titre mis à jour',
       updateError: 'Erreur lors de la mise à jour du titre'
+    },
+    questions: {
+      title: 'Questions',
+      add: "Ajouter une question",
+      empty: "Pas encore de questions",
+      noQuestionReturned: 'Aucune question renvoyée par le backend',
     }
   }
 }

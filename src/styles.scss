@@ -26,7 +26,7 @@
   --color-success-background: #63a163;
   --color-success-border: #14a914;
 
-  --color-account-background: #eee;
+  --color-primary-background : #a4a8c0;
 }
 
 html {
@@ -57,4 +57,15 @@ body {
   border: 1px solid currentColor;
   border-radius: .5rem;
   background-color: var(--color-error-background);
+}
+
+.info {
+  font-size: 1.6rem;
+  padding: 2rem 4rem;
+  margin: 2rem 4rem;
+  text-align: center;
+  color: var(--color-primary);
+  border: 1px solid currentColor;
+  border-radius: .5rem;
+  background-color: var(--color-primary-background);
 }
