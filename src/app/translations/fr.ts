@@ -126,6 +126,9 @@ export const fr = {
     },
     question: {
       title: 'Question',
+      newAnswer: {
+        placeholder: 'Nouvelle réponse',
+      }
     }
   }
 }

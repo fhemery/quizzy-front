@@ -7,7 +7,7 @@
   <div class="questions__details">
     @if (questions) {
     @for (question of questions; track question.id) {
-      <qzy-quiz-form-question [question]="question" (updateQuestionTitle)="updateQuestionTitle(question.id, $event)"></qzy-quiz-form-question>
+      <qzy-quiz-form-question [question]="question" (updateQuestion)="updateQuestion($event)"></qzy-quiz-form-question>
     } @empty {
       <div class="info">
         <h4>{{'quizEditPage.questions.empty' | translate}}</h4>
