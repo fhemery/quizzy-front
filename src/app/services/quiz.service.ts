@@ -86,12 +86,19 @@ export class QuizService {
     return this.httpClient.post<void>(`${environment.apiUrl}/quiz/${quizId}/questions`, question, {observe: 'response'}).pipe(
       map(response => {
         const location = response.headers.get('Location') || '';
-        console.log('Location is', location);
         return { id: location.substring(location.lastIndexOf('/') + 1), ...question}
       }));
   }
 
   updateQuestion(quizId: string, question: QuizQuestion) {
     return this.httpClient.put<void>(`${environment.apiUrl}/quiz/${quizId}/questions/${question.id}`, question);
+  }
+
+  start(url: string): Observable<string> {
+    return this.httpClient.post<void>(url, {}, {observe: 'response'})
+      .pipe(map(response => {
+        const location = response.headers.get('Location') || '';
+        return location.substring(location.lastIndexOf('/') + 1)
+      }));
   }
 }

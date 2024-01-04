@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Quiz } from '../../../../../model/quiz';
 import { MatTableModule } from '@angular/material/table';
@@ -15,8 +15,9 @@ import { RouterLink } from '@angular/router';
 export class QuizListTableComponent {
   displayedColumns: string[] = ['title', 'actions'];
   @Input() quizzes!: Quiz[]  ;
+  @Output() startQuiz = new EventEmitter<string>();
 
-  startQuiz(url: string) {
-    console.log('starting quizz through URL: '+url);
+  onStartQuiz(url: string) {
+    this.startQuiz.emit(url);
   }
 }

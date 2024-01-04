@@ -6,7 +6,7 @@
   @if (quizzes$ | async; as quizzes) {
     <div class="dashboard__quizzes">
       @if (quizzes.status === 'OK') {
-        <qzy-quiz-list [quizzes]="quizzes" (createQuiz)="createQuiz()" ></qzy-quiz-list>
+        <qzy-quiz-list [quizzes]="quizzes" (createQuiz)="createQuiz()" (startQuiz)="startQuiz($event)" ></qzy-quiz-list>
       } @else {
         <div class="dashboard__error">
           {{ 'welcomePage.dashboard.errorLoadingQuizzes' | translate }}

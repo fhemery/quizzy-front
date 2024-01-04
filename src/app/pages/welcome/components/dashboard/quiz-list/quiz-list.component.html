@@ -15,7 +15,7 @@
       <qzy-new-quiz-button [quizzes]="quizzes" (createQuiz)="onCreateQuiz()"></qzy-new-quiz-button>
     </div>
   } @else {
-    <qzy-quiz-list-table [quizzes]="quizzes.data"></qzy-quiz-list-table>
+    <qzy-quiz-list-table [quizzes]="quizzes.data" (startQuiz)="onStartQuiz($event)"></qzy-quiz-list-table>
   }
 
 </div>

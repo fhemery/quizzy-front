@@ -23,4 +23,11 @@ export class DashboardComponent {
       this.router.navigateByUrl(`/quiz/${quizId}`);
     });
   }
+
+  startQuiz(url: string) {
+    this.quizService.start(url).subscribe((executionId) => {
+      console.log(`executionId: ${executionId}`);
+      this.router.navigateByUrl(`/host/${executionId}`);
+    });
+  }
 }

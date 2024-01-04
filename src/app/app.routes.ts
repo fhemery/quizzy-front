@@ -11,6 +11,10 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('./pages/quiz-edit/quiz-edit.routes').then(m => m.quizEditRoutes)
   },
   {
+    path: 'host',
+    loadChildren: () => import('./pages/host-quiz/host-quiz.routes').then(m => m.hostQuizRoutes)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.routes').then(m => m.loginRoutes)
   },

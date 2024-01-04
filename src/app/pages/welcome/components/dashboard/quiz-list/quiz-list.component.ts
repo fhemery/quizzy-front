@@ -18,8 +18,13 @@ import { QuizListTableComponent } from '../quiz-list-table/quiz-list-table.compo
 export class QuizListComponent {
   @Input() quizzes!: QuizListResponse;
   @Output() createQuiz = new EventEmitter<void>();
+  @Output() startQuiz = new EventEmitter<string>();
 
   onCreateQuiz() {
     this.createQuiz.emit();
+  }
+
+  onStartQuiz(url: string) {
+    this.startQuiz.emit(url);
   }
 }
