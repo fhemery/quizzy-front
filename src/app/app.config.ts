@@ -8,17 +8,18 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { authInterceptor } from './services/auth/auth-interceptor.service';
+import { SocketIoModule } from 'ngx-socket-io';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withComponentInputBinding()),
     provideAnimations(),
     provideHttpClient(withInterceptors([authInterceptor])),
-
     importProvidersFrom(
       [
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
-        TranslateModule.forRoot()]
+        TranslateModule.forRoot()],
+        SocketIoModule.forRoot({ url: environment.baseUrl }),
     )]
 };
