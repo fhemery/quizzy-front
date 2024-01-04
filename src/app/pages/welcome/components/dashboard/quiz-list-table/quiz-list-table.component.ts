@@ -15,4 +15,8 @@ import { RouterLink } from '@angular/router';
 export class QuizListTableComponent {
   displayedColumns: string[] = ['title', 'actions'];
   @Input() quizzes!: Quiz[]  ;
+
+  startQuiz(url: string) {
+    console.log('starting quizz through URL: '+url);
+  }
 }

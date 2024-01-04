@@ -11,6 +11,9 @@ export interface QuizListResponse {
   status: 'OK' | 'ERROR';
   data: Quiz[];
   isCreateQuizLinkAvailable: boolean;
+  _links? : {
+    create?: string;
+  }
 }
 
 export interface QuizResponse {
@@ -36,13 +39,18 @@ export class QuizService {
 
   getAll(): Observable<QuizListResponse> {
     return this.httpClient.get<GetAllQuizApiResponse>(`${environment.apiUrl}/quiz`).pipe(
+      tap(response => {
+        if (response._links?.create) {
+          this.hateoasService.addUrl(HateoasUrl.CreateQuiz, response._links.create);
+        }
+      }),
       map((response): QuizListResponse => ({ status: 'OK' , data: response.data, isCreateQuizLinkAvailable: !!response._links?.create })),
       catchError((): Observable<QuizListResponse> => of({ status: 'ERROR', data: [], isCreateQuizLinkAvailable: false })));
-
   }
 
   create() {
-    return this.httpClient.post<void>(`${environment.apiUrl}/quiz`, {
+    const url = this.hateoasService.getUrl(HateoasUrl.CreateQuiz);
+    return this.httpClient.post<void>(url || `${environment.apiUrl}/quiz`, {
       title: this.translateService.instant('quiz.defaultTitle'),
       description: this.translateService.instant('quiz.defaultDescription')
     }, {observe: 'response'}).pipe(tap((response) => {

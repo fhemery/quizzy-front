@@ -5,4 +5,8 @@ export interface Quiz {
   title: string;
 
   questions: QuizQuestion[];
+
+  _links?: {
+    start?: string;
+  }
 }

@@ -13,7 +13,10 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element">
-      <a [routerLink]="'/quiz/'+element.id"><mat-icon>edit</mat-icon></a>
+      <a [routerLink]="'/quiz/'+element.id"><mat-icon class="action-icon">edit</mat-icon></a>
+      @if (element._links?.start) {
+        <mat-icon (click)="startQuiz(element._links.start)" class="action-icon">play_circle</mat-icon>
+      }
     </td>
   </ng-container>
 
