@@ -10,10 +10,16 @@ export interface ClientJoinDetails {
   quizTitle: string;
 }
 
+export interface QuestionEvent {
+  question: string;
+  answers: string[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class QuizJoinService {
   private readonly socketService = inject(SocketService);
   status$ = this.socketService.listenToEvent<StatusEvent>('status');
+  question$ = this.socketService.listenToEvent<QuestionEvent>('newQuestion');
 
   joinQuiz(id: string): Promise<ClientJoinDetails> {
     return new Promise(resolve => {

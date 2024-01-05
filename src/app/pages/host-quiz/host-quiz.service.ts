@@ -20,15 +20,13 @@ export class HostQuizService {
       status => console.log('status', status)
     )
   );
-  hostDetails$ = this.socketService.listenToEvent<HostDetailsEvent>('host-details').pipe(
-    tap(details => console.log('host-details', JSON.stringify(details))),
-    map(details => details.quiz)
-  );
-
   connect(executionId: string): Promise<HostDetailsEvent> {
     return new Promise((resolve) => {
       this.socketService.sendEvent<HostDetailsEvent>('host', { executionId }, (response) => resolve(response));
     })
   }
 
+  nextQuestion(executionId: string) {
+    this.socketService.sendEvent('nextQuestion', { executionId });
+  }
 }
