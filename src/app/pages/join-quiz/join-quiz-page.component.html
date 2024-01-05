@@ -1,0 +1,14 @@
+<div class="join-quiz">
+  @if(quizDetails) {
+    <h3>You have joined: {{quizDetails.quizTitle}}</h3>
+  }
+
+  @if(status$ | async; as status) {
+    <div class="join-quiz__status">Current number of participants: {{status.participants}}</div>
+    <div class="info">Currently waiting for host to start quiz!</div>
+  } @else {
+    <div class="join-quiz__status alert">Currently fetching status</div>
+  }
+
+</div>
+

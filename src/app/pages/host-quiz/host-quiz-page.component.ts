@@ -20,18 +20,15 @@ export class HostQuizPageComponent implements OnInit {
   currentStatus?: StatusEvent;
   quiz?: Quiz;
 
-  ngOnInit() {
+  async ngOnInit() {
     if (!this.id) {
       this.router.navigateByUrl('/');
     }
     this.hostQuizService.status$.subscribe((status) => {
       this.currentStatus = status;
     });
-    this.hostQuizService.hostDetails$.subscribe(quiz => {
-      this.quiz = quiz;
-    })
-    this.hostQuizService.connect(this.id);
-
+    const hostDetails = await this.hostQuizService.connect(this.id);
+    this.quiz = hostDetails.quiz;
   }
 
   protected readonly environment = environment;

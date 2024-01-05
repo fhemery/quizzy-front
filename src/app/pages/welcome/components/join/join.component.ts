@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'qzy-join',
@@ -13,8 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './join.component.scss',
 })
 export class JoinComponent {
+  private readonly router = inject(Router);
   joinCode = '';
+
   join() {
-    alert('Not implemented yet');
+    this.router.navigateByUrl(`/join/${this.joinCode}`);
   }
 }

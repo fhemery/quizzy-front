@@ -25,8 +25,10 @@ export class HostQuizService {
     map(details => details.quiz)
   );
 
-  connect(executionId: string) {
-    this.socketService.sendEvent('host', { executionId });
+  connect(executionId: string): Promise<HostDetailsEvent> {
+    return new Promise((resolve) => {
+      this.socketService.sendEvent<HostDetailsEvent>('host', { executionId }, (response) => resolve(response));
+    })
   }
 
 }

@@ -6,9 +6,13 @@ import { Observable } from 'rxjs';
 export class SocketService {
   constructor(private socket: Socket) {}
 
-  public sendEvent(name: string, data?: any): void {
+  public sendEvent<T>(name: string, data?: any, callback?: (response: T) => void): void {
     console.log(`sending event ${name} with data ${JSON.stringify(data)}`);
-    this.socket.emit(name, data);
+
+    if (!callback){
+      callback = () => {};
+    }
+    this.socket.emit(name, data, callback);
   }
 
   public listenToEvent<T>(name: string): Observable<T> {
