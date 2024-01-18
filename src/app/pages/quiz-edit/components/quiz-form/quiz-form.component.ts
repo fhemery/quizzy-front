@@ -20,6 +20,7 @@ export class QuizFormComponent {
   private readonly snackBar = inject(MatSnackBar);
   private readonly translateService = inject(TranslateService);
   @Input() quiz!: Quiz;
+  @Input() quizId!: string;
 
 
   updateTitle($event: Event) {
