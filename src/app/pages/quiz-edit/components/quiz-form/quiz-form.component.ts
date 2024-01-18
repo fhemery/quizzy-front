@@ -26,7 +26,7 @@ export class QuizFormComponent {
   updateTitle($event: Event) {
     const newTitle = ($event.target as HTMLInputElement).value;
     if (newTitle !== this.quiz.title) {
-      this.quizService.updateTitle(this.quiz.id, newTitle)
+      this.quizService.updateTitle(this.quizId, newTitle)
         .pipe(catchError(() => {
           this.snackBar.open(this.translateService.instant('quizEditPage.title.updateError'), this.translateService.instant('common.ok'), {
             duration: 2000
