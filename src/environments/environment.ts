@@ -9,5 +9,6 @@ export const environment = {
     storageBucket: '<TODO>',
     messagingSenderId: '<TODO>',
     appId: '<TODO>',
-  },
+  }, useSocketIo: true
+
 };

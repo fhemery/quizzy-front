@@ -20,7 +20,10 @@ export class JoinQuizPageComponent implements OnInit {
   async ngOnInit() {
     console.log('id is', this.id);
     if (this.id) {
-      this.quizDetails = await this.quizJoinService.joinQuiz(this.id);
+      this.quizJoinService.joinDetails$.subscribe((details) => {
+        this.quizDetails = details;
+      });
+      this.quizJoinService.joinQuiz(this.id);
     }
   }
 }

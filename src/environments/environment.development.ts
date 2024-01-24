@@ -11,4 +11,5 @@ export const environment = {
     messagingSenderId: "672957574879",
     appId: "1:672957574879:web:5d76e3dd5eedb16a94436a"
   },
+  useSocketIo: true
 };

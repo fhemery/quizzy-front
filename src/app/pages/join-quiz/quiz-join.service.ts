@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { SocketIoService } from '../../services/socket-io.service';
 import { SocketService } from '../../services/socket.service';
 
 export interface StatusEvent {
@@ -8,6 +9,10 @@ export interface StatusEvent {
 
 export interface ClientJoinDetails {
   quizTitle: string;
+}
+
+export interface ClientJoinEvent {
+  executionId: string;
 }
 
 export interface QuestionEvent {
@@ -20,10 +25,9 @@ export class QuizJoinService {
   private readonly socketService = inject(SocketService);
   status$ = this.socketService.listenToEvent<StatusEvent>('status');
   question$ = this.socketService.listenToEvent<QuestionEvent>('newQuestion');
+  joinDetails$ = this.socketService.listenToEvent<ClientJoinDetails>('joinDetails')
 
-  joinQuiz(id: string): Promise<ClientJoinDetails> {
-    return new Promise(resolve => {
-      this.socketService.sendEvent<ClientJoinDetails>('join', { executionId: id }, (response) => resolve(response));
-    });
+  joinQuiz(id: string){
+      this.socketService.sendEvent<ClientJoinEvent>('join', { executionId: id });
   }
 }

@@ -28,8 +28,10 @@ export class HostQuizPageComponent implements OnInit {
     this.hostQuizService.status$.subscribe((status) => {
       this.currentStatus = status;
     });
-    const hostDetails = await this.hostQuizService.connect(this.id);
-    this.quiz = hostDetails.quiz;
+    this.hostQuizService.hostDetails$.subscribe((details) => {
+      this.quiz = details.quiz;
+    });
+    this.hostQuizService.connect(this.id);
   }
 
   protected readonly environment = environment;

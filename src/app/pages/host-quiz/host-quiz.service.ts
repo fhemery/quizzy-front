@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { SocketService } from '../../services/socket.service';
-import { map, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { Quiz } from '../../model/quiz';
+import { SocketService } from 'src/app/services/socket.service';
 
 export interface StatusEvent {
   status: 'waiting';
@@ -12,6 +12,10 @@ export interface HostDetailsEvent {
   quiz: Quiz;
 }
 
+export interface HostJoinEvent {
+  executionId: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class HostQuizService {
   private readonly socketService = inject(SocketService);
@@ -20,10 +24,12 @@ export class HostQuizService {
       status => console.log('status', status)
     )
   );
-  connect(executionId: string): Promise<HostDetailsEvent> {
-    return new Promise((resolve) => {
-      this.socketService.sendEvent<HostDetailsEvent>('host', { executionId }, (response) => resolve(response));
-    })
+  hostDetails$ = this.socketService.listenToEvent<HostDetailsEvent>('hostDetails')
+    .pipe(tap(
+      details => console.log('host details', details)
+    ));
+  connect(executionId: string) {
+    this.socketService.sendEvent<HostJoinEvent>('host', { executionId });
   }
 
   nextQuestion(executionId: string) {
