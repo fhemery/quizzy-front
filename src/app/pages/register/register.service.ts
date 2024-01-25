@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, from, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, from, map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth/auth.service';
 
 export interface RegisterResult {
   isSuccess: boolean;
@@ -30,12 +31,14 @@ export class RegisterService {
           errors: ['The registration by firebase failed, with the following error : ' + JSON.stringify(err)]
         });
       }),
-      switchMap((u) =>
+      switchMap(() =>
         this.httpClient.post(`${environment.apiUrl}/users`, {
           username
         }).pipe(map(() => ({
             isSuccess: true,
             errors: []
+          }), tap(() => {
+            inject(AuthService).userJustRegistered$.next(true)
           })),
           catchError((err) => {
               return of({

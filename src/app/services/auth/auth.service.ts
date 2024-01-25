@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth, authState, signInWithEmailAndPassword, User } from '@angular/fire/auth';
-import { catchError, from, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, delay, from, map, merge, Observable, of, Subject, switchMap } from 'rxjs';
 import { UserDetails } from './user-details';
 import { UserService } from './user.service';
 
@@ -18,7 +18,12 @@ export class AuthService {
   private userService = inject(UserService);
 
   user$: Observable<User | null> =  authState(this.auth);
-  userDetails$: Observable<UserDetails | null> = this.user$.pipe(
+  userJustRegistered$: Subject<boolean> = new Subject<boolean>();
+  userDetails$: Observable<UserDetails | null> = merge([
+    this.user$.pipe(map(user => !!user)),
+    this.userJustRegistered$
+    ]).pipe(
+    delay(500),
     switchMap((user) => {
       if (!user) {
         return of(null);
@@ -30,7 +35,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<LoginResult> {
     return from(signInWithEmailAndPassword(this.auth, email, password))
-      .pipe(map(value => ({ isSuccess: true, errors: [] })),
+      .pipe(map(() => ({ isSuccess: true, errors: [] })),
         catchError((error): Observable<LoginResult> => {
           if (error?.code === 'auth/invalid-credentials') {
             return of({ isSuccess: false, errors: ['Invalid credentials'] });
